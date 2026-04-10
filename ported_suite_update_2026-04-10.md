@@ -304,6 +304,76 @@ Review note:
 - Gemma and Nemotron both favored baseline on PPL and VRAM, even though some compressed variants were faster in the throughput suites.
 - Mistral 119B remains the main unresolved quality gap from April 10: throughput data exists, but the later PPL gapfill run did not produce usable final perplexity rows.
 
+#### Full ctx=512 PPL / Max-VRAM Rows
+
+The earlier summary tables compressed this quality pass too aggressively. The full per-variant rows are below.
+
+##### Qwen 9B ctx=512
+
+| Variant | Status | PPL | Max VRAM MiB | Delta VRAM MiB |
+|---|---|---:|---:|---:|
+| baseline | ok | 4.0681 | 6566 | 5580 |
+| `tq1_k` | ok | 4.0536 | 6592 | 5606 |
+| `tq3_k` | ok | 4.0754 | 6590 | 5604 |
+| `sq3_k` | ok | 4.0754 | 6590 | 5604 |
+| `planar3_k` | ok | 4.0627 | 6570 | 5584 |
+| `iso3_k` | ok | 4.0627 | 6590 | 5604 |
+
+##### Qwen 27B ctx=512
+
+| Variant | Status | PPL | Max VRAM MiB | Delta VRAM MiB |
+|---|---|---:|---:|---:|
+| baseline | ok | 3.5447 | 11432 | 10446 |
+| `tq1_k` | ok | 3.5412 | 11450 | 10454 |
+| `tq3_k` | ok | 3.5513 | 11448 | 10462 |
+| `sq3_k` | ok | 3.5513 | 11448 | 10462 |
+| `planar3_k` | ok | 3.5461 | 11444 | 10458 |
+| `iso3_k` | ok | 3.5461 | 11444 | 10458 |
+
+##### Qwen 122B ctx=512
+
+| Variant | Status | PPL | Max VRAM MiB | Delta VRAM MiB |
+|---|---|---:|---:|---:|
+| baseline | ok | 3.7456 | 10580 | 9594 |
+| `tq1_k` | ok | 3.7452 | 10582 | 9575 |
+| `tq3_k` | ok | 3.7466 | 10580 | 9594 |
+| `sq3_k` | ok | 3.7466 | 10580 | 9573 |
+| `planar3_k` | missing | blocked | blocked | blocked |
+| `iso3_k` | ok | 3.7543 | 10568 | 9582 |
+
+##### Gemma 4 31B ctx=512
+
+| Variant | Status | PPL | Max VRAM MiB | Delta VRAM MiB |
+|---|---|---:|---:|---:|
+| baseline | ok | 119.9030 | 7820 | 6834 |
+| `tq1_k` | ok | 121.6342 | 7854 | 6868 |
+| `tq3_k` | ok | 124.4262 | 7854 | 6868 |
+| `sq3_k` | ok | 124.4262 | 7874 | 6888 |
+| `planar3_k` | ok | 119.9030 | 7842 | 6856 |
+| `iso3_k` | ok | 119.9030 | 7842 | 6856 |
+
+##### Nemotron 120B ctx=512
+
+| Variant | Status | PPL | Max VRAM MiB | Delta VRAM MiB |
+|---|---|---:|---:|---:|
+| baseline | ok | 4.0351 | 9430 | 8444 |
+| `tq1_k` | ok | 4.0457 | 9432 | 8446 |
+| `tq3_k` | ok | 4.0479 | 9432 | 8446 |
+| `sq3_k` | ok | 4.0479 | 9432 | 8446 |
+| `planar3_k` | ok | 4.0351 | 9430 | 8442 |
+| `iso3_k` | ok | 4.0351 | 9430 | 8442 |
+
+##### Mistral 119B ctx=512
+
+| Variant | Status | PPL | Max VRAM MiB | Delta VRAM MiB |
+|---|---|---:|---:|---:|
+| baseline | `failed(143)` | blocked | 1192 | 204 |
+| `tq1_k` | `failed(139)` | blocked | 11304 | 10316 |
+| `tq3_k` | `failed(139)` | blocked | 11304 | 10316 |
+| `sq3_k` | `failed(139)` | blocked | 11304 | 10315 |
+| `planar3_k` | `failed(143)` | blocked | 1192 | 203 |
+| `iso3_k` | `failed(143)` | blocked | 1192 | 203 |
+
 ### 2048-Context Update
 
 The 2048-context sweep now provides a usable same-day long-context checkpoint instead of only status-level placeholders.
@@ -324,12 +394,27 @@ The 2048-context sweep now provides a usable same-day long-context checkpoint in
 | Qwen 9B | `planar3_k` / `iso3_k` | 4.2249 | `tq3_k` / `sq3_k` | 6233 | full six-variant set completed |
 | Qwen 27B | `planar3_k` / `iso3_k` | 4.0129 | baseline | 6611 | full six-variant set completed |
 | Qwen 122B | baseline | 3.3143 | baseline | 8007 | baseline + `tq1_k` + `tq3_k` + `sq3_k` + `iso3_k` completed; `planar3_k` absent |
+| Gemma 4 31B | baseline | 94.9096 | baseline | 5385 | full six-variant set completed |
 
 Review note:
 
 - Qwen 9B and Qwen 27B now have complete same-day 2048-context variant coverage.
+- Gemma 4 31B also now has complete same-day 2048-context variant coverage.
 - Qwen 27B showed the most striking long-context quality split of the later batch: baseline recorded 7.5664 PPL while all compressed variants clustered near 4.01 to 4.02, which is strong enough to warrant an explicit rerun or audit before treating it as a settled conclusion.
 - Qwen 122B long-context data currently favors baseline on both PPL and VRAM among the completed rows.
+
+#### Full 2048 Rows For Completed Families
+
+##### Gemma 4 31B ctx=2048
+
+| Variant | Status | PPL | Max VRAM MiB | Delta VRAM MiB |
+|---|---|---:|---:|---:|
+| baseline | ok | 94.9096 | 5385 | 4515 |
+| `tq1_k` | ok | 97.3686 | 5551 | 4567 |
+| `tq3_k` | ok | 96.6882 | 5551 | 4567 |
+| `sq3_k` | ok | 97.0112 | 5551 | 4567 |
+| `planar3_k` | ok | 96.0670 | 5530 | 4546 |
+| `iso3_k` | ok | 96.0670 | 5532 | 4544 |
 
 ## Publication Guidance
 
