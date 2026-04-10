@@ -33,6 +33,81 @@ The strongest takeaways from the last 48 hours are:
    - patched `ngl=20`, where TurboQuant plus late-range host fallback makes the run possible, but SpectralQuant is near-parity rather than a raw throughput win
 5. RTX 4070 DVFS matters, but modestly. `160 W` is the best practical default, `140 W` is the best pure efficiency point, and neither changes the system story as much as runtime choice does.
 
+## Code Provenance, Forks, and Credits
+
+This repository is a benchmark publication repo, not the main development repo.
+
+That distinction matters because the results here were produced from multiple upstream and downstream codebases rather than from one single unified tree.
+
+### Repositories used in this round
+
+Primary code sources used directly in the last 48 hours:
+
+| Role | Repository / tree | How it was used |
+|---|---|---|
+| Conceptual starting point | `luce-org/luce-megakernel` | Research reference for persistent-kernel decode specialization and hybrid-path thinking |
+| Stock control runtime | `ggml-org/llama.cpp`-derived local stock tree | Baseline `llama-bench` comparison rows where runnable |
+| TurboQuant / SpectralQuant runtime | local `llama-cpp-turboquant` tree | Main TQ and SQ benchmark/perplexity source, plus 122B host-fallback work |
+| RotorQuant runtime | local `llama-cpp-rotorquant-llama` tree | Main RQ benchmark/perplexity source for `planar3` and `iso3` rows |
+| GreenBoost shim/runtime environment | local `nvidia_greenboost` tree | Optional `LD_PRELOAD` runtime mode used for GreenBoost on/off comparisons |
+| Publication repo | this repo | Final condensed write-up only |
+
+Additional local port trees were inspected during this window, including `ports/llama-cpp-turboquant-b8756` and `ports/llama-cpp-rotorquant-b8756`, but those port builds were not clean enough to serve as benchmark sources for the published tables.
+
+### What was actually merged
+
+There were two different kinds of "merge" in this work, and they should not be confused.
+
+1. Benchmark-level merge:
+   - results from separate runtime families were normalized into matched benchmark envelopes and then compared in one report.
+   - this is the main meaning of "merge" for the published tables.
+
+2. Code-level selective carry-forward:
+   - specific implementation ideas and fixes were carried into the active TurboQuant/SpectralQuant path where they were necessary to make new envelopes runnable.
+   - the clearest example is the 122B `ngl=20` work, where allocator splitting and late-range host fallback were added in the TurboQuant/SQ branch so the model could run on this RTX 4070 host.
+
+What did not happen:
+
+- there was not a single monolithic source-tree merge of Luce, TurboQuant, SpectralQuant, RotorQuant, and stock llama.cpp into one benchmark binary.
+- RotorQuant rows and TurboQuant/SQ rows still come from separate llama.cpp-family forks.
+- Luce-Megakernel was not imported as benchmark code here; it was used as a design reference and framing influence.
+
+### Practical method used to reconcile the forks
+
+The method for this publication was:
+
+1. Start from a Luce-style research question: would hybrid decode specialization matter on this machine?
+2. Compare runnable local runtime families under matched envelopes instead of assuming the answer from architecture alone.
+3. Keep stock, TQ/SQ, and RQ binaries separate when they were truly separate codebases.
+4. Only carry forward code changes when they were needed to make a host envelope runnable or measurable.
+5. Publish tables that clearly distinguish runtime families instead of pretending they came from one upstream.
+
+That is why the report tables always label rows as Stock, TQ, SQ, or RQ rather than flattening everything into one synthetic benchmark family.
+
+### Upstream and inspiration credits
+
+Credit and thanks are due to the originators of the ideas and code that made this work possible.
+
+| Project / group | Credit |
+|---|---|
+| `luce-org/luce-megakernel` | For the original prompt to look seriously at persistent decode specialization, hybrid-model kernels, and architecture-specific optimization instead of treating generic kernels as the only path |
+| `ggml-org/llama.cpp` and contributors | For the base runtime, tooling, model-loading path, and benchmark utilities that all of these comparisons ultimately depend on |
+| TurboQuant contributors | For the TQ runtime path and the practical K/V quantization variants used throughout the study |
+| SpectralQuant contributors | For the SQ3 line of work, calibration tooling, and the compression path evaluated here |
+| RotorQuant contributors | For the `planar3` and `iso3` runtime paths that produced some of the strongest results in this batch |
+| GreenBoost work and inspiration | For the preload/runtime experimentation that made the GreenBoost on/off comparison axis possible |
+
+### Thanks and acknowledgements
+
+Thanks to the upstream authors and maintainers whose work provided both the baseline and the experimental paths here.
+
+In particular:
+
+- thanks to the Luce-Megakernel authors for the architectural inspiration;
+- thanks to the `llama.cpp` maintainers and contributors for the underlying runtime foundation;
+- thanks to the TurboQuant, SpectralQuant, and RotorQuant authors for exploring different K/V compression and runtime tradeoff spaces;
+- and thanks to everyone doing the less glamorous systems work around loaders, allocators, offload boundaries, and runtime measurement, because on a 12 GB RTX 4070 that systems work turned out to matter as much as the compression schemes themselves.
+
 ## Scope and Metric Notes
 
 This report covers benchmark and quality work completed in the last 48 hours, centered on:
