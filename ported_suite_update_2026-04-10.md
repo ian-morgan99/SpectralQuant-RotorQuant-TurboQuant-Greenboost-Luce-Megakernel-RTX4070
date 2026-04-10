@@ -21,10 +21,10 @@ The driver script used was:
 
 Important scope note:
 
-- this batch was a throughput rerun only;
-- it did not collect a fresh April 10 perplexity or peak-VRAM matrix;
-- GreenBoost was explicitly off in this suite;
-- all rows below therefore show throughput only, with quality / VRAM / wattage marked `n/c` unless known from the run metadata.
+- the first publication pass for this note covered the GreenBoost-off throughput rerun only;
+- later April 10 runs filled in GreenBoost-on throughput, most of the fresh ctx=512 perplexity / peak-VRAM matrix, and several 2048-context checks;
+- the sections below keep the original off-only rerun intact and then append the later same-day gapfill results;
+- remaining gaps are called out explicitly where they still exist.
 
 ## Driver Outcome Summary
 
@@ -256,6 +256,81 @@ Instead, the more defensible conclusions are:
 4. Nemotron 120B and Mistral 119B both favored TurboQuant-family rows over SQ and RQ in this batch.
 5. SpectralQuant `sq3_k` remained runnable across all six model families in this rerun, but it was only occasionally near the front of the pack and was not the dominant family in this off-only suite.
 
+## Later April 10 Gapfill Results
+
+After the off-only rerun was published, the April 10 study continued with three useful follow-on batches:
+
+1. a full GreenBoost-on ported throughput rerun across all six model families;
+2. a fresh ctx=512 perplexity / peak-VRAM pass for five of the six families, plus partial failure evidence for Mistral 119B;
+3. a 2048-context sweep that completed baseline checks for the larger models and full variant checks for Qwen 9B, Qwen 27B, and most of Qwen 122B.
+
+These later results materially reduce the `n/c` coverage from the first publication pass.
+
+### GreenBoost-On Throughput Summary
+
+All six GreenBoost-on ported throughput runs completed successfully.
+
+| Model | Baseline Prompt TPS | Baseline Response TPS | Best Prompt Variant | Best Prompt TPS | Best Response Variant | Best Response TPS | Takeaway |
+|---|---:|---:|---|---:|---|---:|---|
+| Qwen 9B | 2930.0998 | 68.8220 | baseline | 2930.0998 | `sq3_k` | 69.8865 | GreenBoost-on erased the earlier RotorQuant prompt lead; stock stayed best on prompt while SQ3 edged response throughput. |
+| Qwen 27B | 87.9964 | 2.2811 | baseline | 87.9964 | baseline | 2.2811 | The on-run favored stock outright; all compressed variants stayed below baseline on both axes. |
+| Qwen 122B | 1.9445 | 2.6265 | `sq3_k` | 4.1340 | `planar3_k` | 4.2550 | GreenBoost-on substantially improved the compressed rows relative to stock on this model. |
+| Gemma 4 31B | 43.4743 | 1.1079 | `planar3_k` | 43.8766 | `tq1_k` | 1.1098 | Gemma remained tightly clustered, with only modest separation between families. |
+| Nemotron 120B | 3.1263 | 3.1458 | `sq3_k` | 3.1825 | `iso3_k` | 3.1647 | Nemotron tightened dramatically under GreenBoost-on; family differences became small. |
+| Mistral 119B | 6.7776 | 7.1599 | `sq3_k` | 9.5384 | `tq3_k` | 9.7294 | Mistral again showed large gains from compressed K-only variants under the ported-on setup. |
+
+Review note:
+
+- The GreenBoost-on rerun does not merely replay the GreenBoost-off story.
+- Qwen 122B was the clearest same-day reversal: stock was weakest on both axes, while `sq3_k`, `tq3_k`, and `planar3_k` all moved into the lead cluster.
+- Qwen 27B moved in the opposite direction, with stock staying clearly ahead of all compressed rows.
+
+### Fresh ctx=512 Perplexity And Peak-VRAM Summary
+
+The later April 10 quality pass produced complete usable ctx=512 PPL / peak-VRAM rows for Qwen 9B, Qwen 27B, Qwen 122B except `planar3_k`, Gemma 4 31B, and Nemotron 120B.
+
+| Model | Best PPL Variant | Best PPL | Lowest Peak-VRAM Variant | Lowest Peak VRAM MiB | Remaining Gap |
+|---|---|---:|---|---:|---|
+| Qwen 9B | `tq1_k` | 4.0536 | baseline | 6566 | none |
+| Qwen 27B | `tq1_k` | 3.5412 | baseline | 11432 | none |
+| Qwen 122B | `tq1_k` | 3.7452 | `iso3_k` | 10568 | `planar3_k` missing in the ctx=512 PPL batch |
+| Gemma 4 31B | baseline | 119.9030 | baseline | 7820 | none |
+| Nemotron 120B | baseline | 4.0351 | baseline | 9430 | none |
+| Mistral 119B | blocked | blocked | blocked | blocked | all ctx=512 PPL variants failed in the later gapfill run |
+
+Review note:
+
+- The fresh quality data remained unusually stable across families on the Qwen models, with very small absolute PPL spreads despite throughput differences.
+- Gemma and Nemotron both favored baseline on PPL and VRAM, even though some compressed variants were faster in the throughput suites.
+- Mistral 119B remains the main unresolved quality gap from April 10: throughput data exists, but the later PPL gapfill run did not produce usable final perplexity rows.
+
+### 2048-Context Update
+
+The 2048-context sweep now provides a usable same-day long-context checkpoint instead of only status-level placeholders.
+
+#### Baseline 2048 Runs For Larger Models
+
+| Model | Status | PPL | Peak VRAM MiB | Delta VRAM MiB | Duration s | Note |
+|---|---|---:|---:|---:|---:|---|
+| Qwen 122B | ok | 3.3143 | 8007 | 7137 | 278.1670 | strongest completed large-model baseline result |
+| Gemma 4 31B | ok | 94.9096 | 5385 | 4515 | 642.6690 | long-context baseline completed cleanly |
+| Nemotron 120B | ok | 3.2360 | 6607 | 5737 | 566.8550 | long-context baseline completed cleanly |
+| Mistral 119B | blocked | blocked | 7979 | 7109 | 848.3310 | run completed but produced no usable final PPL |
+
+#### Variant 2048 Results Now Available
+
+| Model | Best 2048 PPL Variant | Best 2048 PPL | Lowest 2048 Peak VRAM Variant | Lowest 2048 Peak VRAM MiB | Coverage |
+|---|---|---:|---|---:|---|
+| Qwen 9B | `planar3_k` / `iso3_k` | 4.2249 | `tq3_k` / `sq3_k` | 6233 | full six-variant set completed |
+| Qwen 27B | `planar3_k` / `iso3_k` | 4.0129 | baseline | 6611 | full six-variant set completed |
+| Qwen 122B | baseline | 3.3143 | baseline | 8007 | baseline + `tq1_k` + `tq3_k` + `sq3_k` + `iso3_k` completed; `planar3_k` absent |
+
+Review note:
+
+- Qwen 9B and Qwen 27B now have complete same-day 2048-context variant coverage.
+- Qwen 27B showed the most striking long-context quality split of the later batch: baseline recorded 7.5664 PPL while all compressed variants clustered near 4.01 to 4.02, which is strong enough to warrant an explicit rerun or audit before treating it as a settled conclusion.
+- Qwen 122B long-context data currently favors baseline on both PPL and VRAM among the completed rows.
+
 ## Publication Guidance
 
 This file should be read as the April 10 ported-suite update, not as a full replacement for the main repository summary.
@@ -263,7 +338,7 @@ This file should be read as the April 10 ported-suite update, not as a full repl
 Recommended interpretation:
 
 - keep the main README as the higher-level cross-day narrative;
-- use this note as the detailed publication record of the April 10 rerun;
+- use this note as the detailed publication record of the April 10 rerun and the same-day gapfill batches that followed it;
 - cite these results specifically when discussing the ported-tree validation batch and the newly added Gemma / Nemotron / Mistral model coverage.
 
 ## Source Files
@@ -272,6 +347,11 @@ Primary driver and summary:
 
 - `spectralquant_study/scripts/run_ported_benchmark_suite_20260410.sh`
 - `spectralquant_study/runs/20260410_ported_suite_summary.tsv`
+- `spectralquant_study/runs/20260410_ported_greenboost_on_suite_summary.tsv`
+- `spectralquant_study/runs/20260410_ported_greenboost_on_ppl_combined_summary.tsv`
+- `spectralquant_study/runs/20260410_ranked_quality_summary.md`
+- `spectralquant_study/runs/20260410_ported_long_context_sweep_summary.tsv`
+- `spectralquant_study/runs/20260410_ported_long_context_gapfill_variants_summary.tsv`
 
 Primary run roots:
 
