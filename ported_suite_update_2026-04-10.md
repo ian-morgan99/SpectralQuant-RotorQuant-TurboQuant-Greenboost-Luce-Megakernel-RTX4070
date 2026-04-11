@@ -258,13 +258,14 @@ Instead, the more defensible conclusions are:
 
 ## Later April 10 Gapfill Results
 
-After the off-only rerun was published, the April 10 study continued with three useful follow-on batches:
+After the off-only rerun was published, the study continued with four useful follow-on phases:
 
 1. a full GreenBoost-on ported throughput rerun across all six model families;
-2. a fresh ctx=512 perplexity / peak-VRAM pass for five of the six families, plus partial failure evidence for Mistral 119B;
-3. a 2048-context sweep that completed baseline checks for the larger models and full variant checks for Qwen 9B, Qwen 27B, and most of Qwen 122B.
+2. a fresh ctx=512 perplexity / peak-VRAM pass;
+3. a 2048-context quality sweep plus variant gapfills;
+4. an April 11 integrity audit and targeted backfills that corrected several previously over-optimistic summaries.
 
-These later results materially reduce the `n/c` coverage from the first publication pass.
+These later results materially improve completeness, but they also invalidate several previously published 2048 baseline PPL claims.
 
 ### GreenBoost-On Throughput Summary
 
@@ -285,28 +286,47 @@ Review note:
 - Qwen 122B was the clearest same-day reversal: stock was weakest on both axes, while `sq3_k`, `tq3_k`, and `planar3_k` all moved into the lead cluster.
 - Qwen 27B moved in the opposite direction, with stock staying clearly ahead of all compressed rows.
 
+### April 11 Integrity Audit
+
+An audit on April 11 found that the original monitored-perplexity collector accepted the first chunk PPL value as final even when later chunks went `nan`.
+
+That means several previously summarized baseline rows are not valid PPL measurements.
+
+Affected rows reclassified from usable to invalid:
+
+- Qwen 27B baseline, ctx 2048
+- Qwen 122B baseline, ctx 2048
+- Gemma 4 31B baseline, ctx 2048
+- Nemotron 120B baseline, ctx 2048
+- Qwen 27B baseline, ctx 8192 / 16384 / 40960
+- Gemma 4 31B baseline, ctx 8192 / 16384 / 40960
+
+At the same time, targeted backfills improved completeness elsewhere:
+
+- Qwen 122B `planar3_k` is now filled at ctx 512 and ctx 2048.
+- Mistral 119B `tq1_k`, `tq3_k`, and `sq3_k` are now filled at ctx 512 and ctx 2048.
+- The current audited 512/2048 quality matrix reports 72 expected rows, 0 missing rows, 62 `ok` rows, and 10 explicit `failed` rows.
+
 ### Fresh ctx=512 Perplexity And Peak-VRAM Summary
 
-The later April 10 quality pass produced complete usable ctx=512 PPL / peak-VRAM rows for Qwen 9B, Qwen 27B, Qwen 122B except `planar3_k`, Gemma 4 31B, and Nemotron 120B.
+The ctx=512 quality matrix is now complete in the sense that there are no silent gaps left. Rows are either measured or explicitly failed.
 
 | Model | Best PPL Variant | Best PPL | Lowest Peak-VRAM Variant | Lowest Peak VRAM MiB | Remaining Gap |
 |---|---|---:|---|---:|---|
 | Qwen 9B | `tq1_k` | 4.0536 | baseline | 6566 | none |
 | Qwen 27B | `tq1_k` | 3.5412 | baseline | 11432 | none |
-| Qwen 122B | `tq1_k` | 3.7452 | `iso3_k` | 10568 | `planar3_k` missing in the ctx=512 PPL batch |
+| Qwen 122B | `tq1_k` | 3.7452 | `iso3_k` | 10568 | none |
 | Gemma 4 31B | baseline | 119.9030 | baseline | 7820 | none |
 | Nemotron 120B | baseline | 4.0351 | baseline | 9430 | none |
-| Mistral 119B | blocked | blocked | blocked | blocked | all ctx=512 PPL variants failed in the later gapfill run |
+| Mistral 119B | `tq1_k` | 32122.2728 | `tq1_k` | 7343 | baseline, `planar3_k`, and `iso3_k` remain explicit failures |
 
 Review note:
 
 - The fresh quality data remained unusually stable across families on the Qwen models, with very small absolute PPL spreads despite throughput differences.
 - Gemma and Nemotron both favored baseline on PPL and VRAM, even though some compressed variants were faster in the throughput suites.
-- Mistral 119B remains the main unresolved quality gap from April 10: throughput data exists, but the later PPL gapfill run did not produce usable final perplexity rows.
+- Mistral 119B is no longer a missing-data problem at ctx 512, but it is still a quality blocker story: the surviving TQ/SQ rows complete with pathologically high perplexity, while baseline and both RotorQuant rows fail.
 
 #### Full ctx=512 PPL / Max-VRAM Rows
-
-The earlier summary tables compressed this quality pass too aggressively. The full per-variant rows are below.
 
 ##### Qwen 9B ctx=512
 
@@ -338,7 +358,7 @@ The earlier summary tables compressed this quality pass too aggressively. The fu
 | `tq1_k` | ok | 3.7452 | 10582 | 9575 |
 | `tq3_k` | ok | 3.7466 | 10580 | 9594 |
 | `sq3_k` | ok | 3.7466 | 10580 | 9573 |
-| `planar3_k` | missing | blocked | blocked | blocked |
+| `planar3_k` | ok | 3.7543 | 10477 | 9561 |
 | `iso3_k` | ok | 3.7543 | 10568 | 9582 |
 
 ##### Gemma 4 31B ctx=512
@@ -367,54 +387,59 @@ The earlier summary tables compressed this quality pass too aggressively. The fu
 
 | Variant | Status | PPL | Max VRAM MiB | Delta VRAM MiB |
 |---|---|---:|---:|---:|
-| baseline | `failed(143)` | blocked | 1192 | 204 |
-| `tq1_k` | `failed(139)` | blocked | 11304 | 10316 |
-| `tq3_k` | `failed(139)` | blocked | 11304 | 10316 |
-| `sq3_k` | `failed(139)` | blocked | 11304 | 10315 |
-| `planar3_k` | `failed(143)` | blocked | 1192 | 203 |
-| `iso3_k` | `failed(143)` | blocked | 1192 | 203 |
+| baseline | failed | blocked | 7215 | 6299 |
+| `tq1_k` | ok | 32122.2728 | 7343 | 6427 |
+| `tq3_k` | ok | 47109.3475 | 7343 | 6427 |
+| `sq3_k` | ok | 47109.3475 | 7343 | 6427 |
+| `planar3_k` | failed | blocked | 6087 | 5171 |
+| `iso3_k` | failed | blocked | 6087 | 5171 |
 
 ### 2048-Context Update
 
-The 2048-context sweep now provides a usable same-day long-context checkpoint instead of only status-level placeholders.
+The 2048-context matrix is now materially more complete, but also more conservative after the integrity audit.
 
-#### Baseline 2048 Runs For Larger Models
+#### Reclassified 2048 Baseline Rows
 
-| Model | Status | PPL | Peak VRAM MiB | Delta VRAM MiB | Duration s | Note |
-|---|---|---:|---:|---:|---:|---|
-| Qwen 122B | ok | 3.3143 | 8007 | 7137 | 278.1670 | strongest completed large-model baseline result |
-| Gemma 4 31B | ok | 94.9096 | 5385 | 4515 | 642.6690 | long-context baseline completed cleanly |
-| Nemotron 120B | ok | 3.2360 | 6607 | 5737 | 566.8550 | long-context baseline completed cleanly |
-| Mistral 119B | blocked | blocked | 7979 | 7109 | 848.3310 | run completed but produced no usable final PPL |
+These baseline runs still provide peak-VRAM evidence, but they do not provide valid final PPL values and should not be used in quality ranking tables.
 
-#### Variant 2048 Results Now Available
+| Model | Status | PPL | Peak VRAM MiB | Delta VRAM MiB | Note |
+|---|---|---:|---:|---:|---|
+| Qwen 27B | failed | blocked | 6611 | 5741 | partial PPL then `nan` |
+| Qwen 122B | failed | blocked | 8007 | 7137 | partial PPL then `nan` |
+| Gemma 4 31B | failed | blocked | 5385 | 4515 | partial PPL then `nan` |
+| Nemotron 120B | failed | blocked | 6607 | 5737 | partial PPL then `nan` |
+| Mistral 119B | failed | blocked | 7979 | 7109 | null-PPL / `nan` path |
 
-| Model | Best 2048 PPL Variant | Best 2048 PPL | Lowest 2048 Peak VRAM Variant | Lowest 2048 Peak VRAM MiB | Coverage |
+#### Audited 2048 Variant Results
+
+| Model | Best Valid 2048 PPL Variant | Best Valid 2048 PPL | Lowest Valid 2048 Peak-VRAM Variant | Lowest Valid 2048 Peak VRAM MiB | Coverage |
 |---|---|---:|---|---:|---|
 | Qwen 9B | `planar3_k` / `iso3_k` | 4.2249 | `tq3_k` / `sq3_k` | 6233 | full six-variant set completed |
-| Qwen 27B | `planar3_k` / `iso3_k` | 4.0129 | baseline | 6611 | full six-variant set completed |
-| Qwen 122B | baseline | 3.3143 | baseline | 8007 | baseline + `tq1_k` + `tq3_k` + `sq3_k` + `iso3_k` completed; `planar3_k` absent |
-| Gemma 4 31B | baseline | 94.9096 | baseline | 5385 | full six-variant set completed |
+| Qwen 27B | `planar3_k` / `iso3_k` | 4.0129 | `tq3_k` | 6619 | baseline invalid; five valid variant rows remain |
+| Qwen 122B | `planar3_k` / `iso3_k` | 3.4578 | `planar3_k` | 8067 | all non-baseline variants now filled |
+| Gemma 4 31B | `planar3_k` / `iso3_k` | 96.0670 | `planar3_k` | 5530 | baseline invalid; five valid variant rows remain |
+| Nemotron 120B | `tq1_k` | 3.8195 | `tq1_k` | 6749 | full non-baseline set completed |
+| Mistral 119B | `tq1_k` | 93376.2709 | `tq3_k` / `sq3_k` | 7615 | TQ/SQ rows completed, baseline and RotorQuant rows failed |
 
 Review note:
 
-- Qwen 9B and Qwen 27B now have complete same-day 2048-context variant coverage.
-- Gemma 4 31B also now has complete same-day 2048-context variant coverage.
-- Qwen 27B showed the most striking long-context quality split of the later batch: baseline recorded 7.5664 PPL while all compressed variants clustered near 4.01 to 4.02, which is strong enough to warrant an explicit rerun or audit before treating it as a settled conclusion.
-- Qwen 122B long-context data currently favors baseline on both PPL and VRAM among the completed rows.
+- Qwen 9B remains the cleanest 2048-quality family in this ported study.
+- Qwen 122B no longer has a `planar3_k` coverage hole at 2048.
+- Nemotron now has a complete non-baseline 2048 variant set.
+- Mistral 119B at 2048 is no longer a missing-data story, but the surviving TQ/SQ rows still show extremely poor quality and the baseline / RotorQuant rows remain blocked.
 
-#### Full 2048 Rows For Completed Families
+### April 11 Large-Context Stress Update
 
-##### Gemma 4 31B ctx=2048
+The April 11 `8192 / 16384 / 40960` response sweep remains useful, but only as stress and scaling evidence.
 
-| Variant | Status | PPL | Max VRAM MiB | Delta VRAM MiB |
-|---|---|---:|---:|---:|
-| baseline | ok | 94.9096 | 5385 | 4515 |
-| `tq1_k` | ok | 97.3686 | 5551 | 4567 |
-| `tq3_k` | ok | 96.6882 | 5551 | 4567 |
-| `sq3_k` | ok | 97.0112 | 5551 | 4567 |
-| `planar3_k` | ok | 96.0670 | 5530 | 4546 |
-| `iso3_k` | ok | 96.0670 | 5532 | 4544 |
+After the integrity audit:
+
+- Qwen 9B baseline remains the only fully valid baseline curve at all three large-context checkpoints.
+- Qwen 27B baseline is invalid at `8192`, `16384`, and `40960`, even after a reduced-batch `8192` retry.
+- Gemma 4 31B baseline is invalid at `8192`, `16384`, and `40960`, even after a reduced-batch `8192` retry.
+- Valid 40960 quantized-KV checks still remain for Qwen 9B `tq1_k`, Qwen 27B `tq1_k`, and Gemma 4 31B `tq1_k`.
+
+This means the current 40k-class evidence should be treated as a stress / scaling appendix, not as headline quality proof.
 
 ## Publication Guidance
 
@@ -434,9 +459,14 @@ Primary driver and summary:
 - `spectralquant_study/runs/20260410_ported_suite_summary.tsv`
 - `spectralquant_study/runs/20260410_ported_greenboost_on_suite_summary.tsv`
 - `spectralquant_study/runs/20260410_ported_greenboost_on_ppl_combined_summary.tsv`
+- `spectralquant_study/runs/20260410_targeted_quality_gapfill_summary.tsv`
+- `spectralquant_study/runs/20260410_full_quality_matrix_completeness.md`
 - `spectralquant_study/runs/20260410_ranked_quality_summary.md`
 - `spectralquant_study/runs/20260410_ported_long_context_sweep_summary.tsv`
 - `spectralquant_study/runs/20260410_ported_long_context_gapfill_variants_summary.tsv`
+- `spectralquant_study/runs/20260411_stats_integrity_audit.md`
+- `spectralquant_study/runs/20260411_large_context_response_summary.tsv`
+- `spectralquant_study/runs/20260411_large_context_response_report.md`
 
 Primary run roots:
 
