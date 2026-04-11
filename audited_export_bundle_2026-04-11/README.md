@@ -12,6 +12,7 @@ Use these files in order:
 6. `mistral_blocker_note.md`: current blocker interpretation for Mistral.
 7. `qwen27b_anomaly_pack_nonrepeated_20260411.md`: anomaly rerun report on a non-repeated corpus.
 8. `master_table_v1.tsv`: machine-readable source of truth for curated rows.
+9. `matched_core_summary_v1.md` and `matched_core_summary_v1.tsv`: derived joined view for core quality rows plus equivalent April 10 ported-on throughput rows.
 
 ## Master Table Shape
 
@@ -21,6 +22,13 @@ Use these files in order:
 - `core_matrix_*`, `large_context_stress`, and `qwen27b_nonrepeated_anomaly_pack` rows carry PPL / VRAM evidence instead.
 - Blank TPS fields on non-throughput rows mean `not measured in that suite`, not `missing from upload`.
 - Reusing throughput from a different envelope was avoided on purpose, because that would make the row look denser while mixing incompatible measurement contexts.
+
+`matched_core_summary_v1.tsv` is the narrower convenience layer for readers who do want a side-by-side throughput-plus-quality view.
+
+- It is a documented join across multiple experiments, not a single-run matrix.
+- It only joins `core_matrix_v1_*` quality rows to `throughput_ported_on_final` rows when `model`, `variant`, and `greenboost` match.
+- Each joined row keeps both the throughput and quality run roots so provenance remains visible.
+- `ctx=512` rows are labeled `strong`; `ctx=2048` rows are labeled `usable_with_ctx_caveat`.
 
 ## Headline Findings
 

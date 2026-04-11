@@ -28,6 +28,18 @@ The TSV combines rows from suites with different measurement goals.
 
 This is preferable to backfilling TPS from a different benchmark envelope, which would blur the distinction between throughput evidence and quality evidence.
 
+## Joined View Rule For `matched_core_summary_v1.tsv`
+
+The derived matched summary table is allowed because its join rule is narrower and explicit.
+
+- join only `throughput_ported_on_final` rows to `core_matrix_v1_ctx512` and `core_matrix_v1_ctx2048` rows
+- require exact match on `model`, `variant`, and `greenboost`
+- keep both source run roots in every joined row
+- label `ctx=512` joins as `strong`
+- label `ctx=2048` joins as `usable_with_ctx_caveat`
+
+That joined view is suitable for compact side-by-side review, but it should still be treated as a multi-experiment summary rather than a single benchmark artifact.
+
 ## Large-Context Caveat
 
 The April 11 large-context sweep used a repeated text corpus. That makes the run useful for:
