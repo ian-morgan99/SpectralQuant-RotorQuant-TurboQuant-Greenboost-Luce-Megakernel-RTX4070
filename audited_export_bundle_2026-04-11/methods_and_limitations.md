@@ -18,6 +18,16 @@
 - `ctx=2048` extends that evidence into medium-context behavior.
 - `8192`, `16384`, and `40960` should remain in a separate large-context track.
 
+## Sparse Column Rule For `master_table_v1.tsv`
+
+The TSV combines rows from suites with different measurement goals.
+
+- Throughput suites populate `prompt_tps` and `response_tps`.
+- Quality, anomaly, and stress suites populate PPL / VRAM fields.
+- Blank TPS cells outside throughput suites are intentional and mean `not measured for that suite`.
+
+This is preferable to backfilling TPS from a different benchmark envelope, which would blur the distinction between throughput evidence and quality evidence.
+
 ## Large-Context Caveat
 
 The April 11 large-context sweep used a repeated text corpus. That makes the run useful for:

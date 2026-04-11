@@ -13,6 +13,15 @@ Use these files in order:
 7. `qwen27b_anomaly_pack_nonrepeated_20260411.md`: anomaly rerun report on a non-repeated corpus.
 8. `master_table_v1.tsv`: machine-readable source of truth for curated rows.
 
+## Master Table Shape
+
+`master_table_v1.tsv` is a sparse union table, not a single fully dense benchmark matrix.
+
+- `throughput_*` rows carry `prompt_tps` and `response_tps`.
+- `core_matrix_*`, `large_context_stress`, and `qwen27b_nonrepeated_anomaly_pack` rows carry PPL / VRAM evidence instead.
+- Blank TPS fields on non-throughput rows mean `not measured in that suite`, not `missing from upload`.
+- Reusing throughput from a different envelope was avoided on purpose, because that would make the row look denser while mixing incompatible measurement contexts.
+
 ## Headline Findings
 
 - The 512 and 2048 matrix is broad enough to freeze as `Core Matrix v1`, but some previously accepted baseline PPL rows were reclassified after a collector-integrity audit.
