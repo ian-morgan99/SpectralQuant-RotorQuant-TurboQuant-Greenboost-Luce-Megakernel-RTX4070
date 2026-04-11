@@ -1,0 +1,162 @@
+model	variant	ctx	greenboost	suite	status	prompt_tps	response_tps	ppl	peak_vram_mib	delta_vram_mib	corpus	repeat_count	confidence_grade	run_dir
+Qwen 9B	baseline	pp512/tg128	off	throughput_ported_off_final	ok	2936.626690	76.034429						B	runs/20260410T072755Z_qwen9b-k-only-all-families-ported-off
+Qwen 9B	iso3_k	pp512/tg128	off	throughput_ported_off_final	ok	2976.753972	73.057244						B	runs/20260410T072755Z_qwen9b-k-only-all-families-ported-off
+Qwen 9B	planar3_k	pp512/tg128	off	throughput_ported_off_final	ok	3110.604101	71.944500						B	runs/20260410T072755Z_qwen9b-k-only-all-families-ported-off
+Qwen 9B	sq3_k	pp512/tg128	off	throughput_ported_off_final	ok	1340.263219	69.465459						B	runs/20260410T072755Z_qwen9b-k-only-all-families-ported-off
+Qwen 9B	tq1_k	pp512/tg128	off	throughput_ported_off_final	ok	1372.999545	68.657386						B	runs/20260410T072755Z_qwen9b-k-only-all-families-ported-off
+Qwen 9B	tq3_k	pp512/tg128	off	throughput_ported_off_final	ok	1334.190727	66.476748						B	runs/20260410T072755Z_qwen9b-k-only-all-families-ported-off
+Qwen 27B	baseline	pp64/tg16	off	throughput_ported_off_final	ok	86.680848	3.950270						B	runs/20260410T155500Z_qwen27b-k-only-all-families-off-r5-replication
+Qwen 27B	iso3_k	pp64/tg16	off	throughput_ported_off_final	ok	87.220515	3.958204						B	runs/20260410T155500Z_qwen27b-k-only-all-families-off-r5-replication
+Qwen 27B	planar3_k	pp64/tg16	off	throughput_ported_off_final	ok	86.913025	3.936765						B	runs/20260410T155500Z_qwen27b-k-only-all-families-off-r5-replication
+Qwen 27B	sq3_k	pp64/tg16	off	throughput_ported_off_final	ok	86.740028	3.918025						B	runs/20260410T155500Z_qwen27b-k-only-all-families-off-r5-replication
+Qwen 27B	tq1_k	pp64/tg16	off	throughput_ported_off_final	ok	86.928013	3.916538						B	runs/20260410T155500Z_qwen27b-k-only-all-families-off-r5-replication
+Qwen 27B	tq3_k	pp64/tg16	off	throughput_ported_off_final	ok	86.464132	3.926099						B	runs/20260410T155500Z_qwen27b-k-only-all-families-off-r5-replication
+Qwen 122B	baseline	pp1/tg1	off	throughput_ported_off_final	ok	4.447522	4.547146						B	runs/20260410T073749Z_qwen122b-k-only-all-families-ported-off
+Qwen 122B	iso3_k	pp1/tg1	off	throughput_ported_off_final	ok	3.614955	4.148374						B	runs/20260410T073749Z_qwen122b-k-only-all-families-ported-off
+Qwen 122B	planar3_k	pp1/tg1	off	throughput_ported_off_final	ok	4.240544	4.741527						B	runs/20260410T073749Z_qwen122b-k-only-all-families-ported-off
+Qwen 122B	sq3_k	pp1/tg1	off	throughput_ported_off_final	ok	4.502910	4.536076						B	runs/20260410T073749Z_qwen122b-k-only-all-families-ported-off
+Qwen 122B	tq1_k	pp1/tg1	off	throughput_ported_off_final	ok	4.426601	4.479099						B	runs/20260410T073749Z_qwen122b-k-only-all-families-ported-off
+Qwen 122B	tq3_k	pp1/tg1	off	throughput_ported_off_final	ok	4.549043	4.617119						B	runs/20260410T073749Z_qwen122b-k-only-all-families-ported-off
+Gemma 4 31B	baseline	pp512/tg128	off	throughput_ported_off_final	ok	46.306620	1.107171						B	runs/20260410T074043Z_gemma4-31b-k-only-all-families-ported-off
+Gemma 4 31B	iso3_k	pp512/tg128	off	throughput_ported_off_final	ok	50.792602	1.231495						B	runs/20260410T074043Z_gemma4-31b-k-only-all-families-ported-off
+Gemma 4 31B	planar3_k	pp512/tg128	off	throughput_ported_off_final	ok	49.515541	1.234948						B	runs/20260410T074043Z_gemma4-31b-k-only-all-families-ported-off
+Gemma 4 31B	sq3_k	pp512/tg128	off	throughput_ported_off_final	ok	46.811537	1.229638						B	runs/20260410T074043Z_gemma4-31b-k-only-all-families-ported-off
+Gemma 4 31B	tq1_k	pp512/tg128	off	throughput_ported_off_final	ok	46.040694	1.233752						B	runs/20260410T074043Z_gemma4-31b-k-only-all-families-ported-off
+Gemma 4 31B	tq3_k	pp512/tg128	off	throughput_ported_off_final	ok	46.803826	1.233549						B	runs/20260410T074043Z_gemma4-31b-k-only-all-families-ported-off
+Nemotron 120B	baseline	pp1/tg1	off	throughput_ported_off_final	ok	3.176153	3.132062						B	runs/20260410T081405Z_nemotron120b-k-only-all-families-ported-off
+Nemotron 120B	iso3_k	pp1/tg1	off	throughput_ported_off_final	ok	2.902011	3.112476						B	runs/20260410T081405Z_nemotron120b-k-only-all-families-ported-off
+Nemotron 120B	planar3_k	pp1/tg1	off	throughput_ported_off_final	ok	2.964044	3.128858						B	runs/20260410T081405Z_nemotron120b-k-only-all-families-ported-off
+Nemotron 120B	sq3_k	pp1/tg1	off	throughput_ported_off_final	ok	2.877392	3.022992						B	runs/20260410T081405Z_nemotron120b-k-only-all-families-ported-off
+Nemotron 120B	tq1_k	pp1/tg1	off	throughput_ported_off_final	ok	3.418771	3.546768						B	runs/20260410T081405Z_nemotron120b-k-only-all-families-ported-off
+Nemotron 120B	tq3_k	pp1/tg1	off	throughput_ported_off_final	ok	3.494476	3.550358						B	runs/20260410T081405Z_nemotron120b-k-only-all-families-ported-off
+Mistral 119B	baseline	pp1/tg1	off	throughput_ported_off_final	ok	4.666025	4.708532						B	runs/20260410T115510Z_mistral119b-k-only-all-families-ported-off-final
+Mistral 119B	iso3_k	pp1/tg1	off	throughput_ported_off_final	ok	8.136123	7.673280						B	runs/20260410T115510Z_mistral119b-k-only-all-families-ported-off-final
+Mistral 119B	planar3_k	pp1/tg1	off	throughput_ported_off_final	ok	8.176093	8.230850						B	runs/20260410T115510Z_mistral119b-k-only-all-families-ported-off-final
+Mistral 119B	sq3_k	pp1/tg1	off	throughput_ported_off_final	ok	10.072899	9.397475						B	runs/20260410T115510Z_mistral119b-k-only-all-families-ported-off-final
+Mistral 119B	tq1_k	pp1/tg1	off	throughput_ported_off_final	ok	10.000994	10.674969						B	runs/20260410T115510Z_mistral119b-k-only-all-families-ported-off-final
+Mistral 119B	tq3_k	pp1/tg1	off	throughput_ported_off_final	ok	10.484199	10.600529						B	runs/20260410T115510Z_mistral119b-k-only-all-families-ported-off-final
+Qwen 9B	baseline	pp512/tg128	on	throughput_ported_on_final	ok	2930.099835	68.821980						B	runs/20260410T141300Z_qwen9b-k-only-all-families-ported-on
+Qwen 9B	iso3_k	pp512/tg128	on	throughput_ported_on_final	ok	2822.313429	68.305354						B	runs/20260410T141300Z_qwen9b-k-only-all-families-ported-on
+Qwen 9B	planar3_k	pp512/tg128	on	throughput_ported_on_final	ok	2841.935622	68.160429						B	runs/20260410T141300Z_qwen9b-k-only-all-families-ported-on
+Qwen 9B	sq3_k	pp512/tg128	on	throughput_ported_on_final	ok	1383.448788	69.886542						B	runs/20260410T141300Z_qwen9b-k-only-all-families-ported-on
+Qwen 9B	tq1_k	pp512/tg128	on	throughput_ported_on_final	ok	1345.709117	64.627552						B	runs/20260410T141300Z_qwen9b-k-only-all-families-ported-on
+Qwen 9B	tq3_k	pp512/tg128	on	throughput_ported_on_final	ok	1351.017518	64.860961						B	runs/20260410T141300Z_qwen9b-k-only-all-families-ported-on
+Qwen 27B	baseline	pp512/tg128	on	throughput_ported_on_final	ok	87.996441	2.281146						B	runs/20260410T141500Z_qwen27b-k-only-all-families-ported-on
+Qwen 27B	iso3_k	pp512/tg128	on	throughput_ported_on_final	ok	80.815580	2.014966						B	runs/20260410T141500Z_qwen27b-k-only-all-families-ported-on
+Qwen 27B	planar3_k	pp512/tg128	on	throughput_ported_on_final	ok	82.680482	2.015776						B	runs/20260410T141500Z_qwen27b-k-only-all-families-ported-on
+Qwen 27B	sq3_k	pp512/tg128	on	throughput_ported_on_final	ok	75.789175	2.009335						B	runs/20260410T141500Z_qwen27b-k-only-all-families-ported-on
+Qwen 27B	tq1_k	pp512/tg128	on	throughput_ported_on_final	ok	78.992533	2.045765						B	runs/20260410T141500Z_qwen27b-k-only-all-families-ported-on
+Qwen 27B	tq3_k	pp512/tg128	on	throughput_ported_on_final	ok	81.162651	2.017148						B	runs/20260410T141500Z_qwen27b-k-only-all-families-ported-on
+Qwen 122B	baseline	pp1/tg1	on	throughput_ported_on_final	ok	1.944523	2.626466						B	runs/20260410T143325Z_qwen122b-k-only-all-families-ported-on
+Qwen 122B	iso3_k	pp1/tg1	on	throughput_ported_on_final	ok	2.729611	4.211265						B	runs/20260410T143325Z_qwen122b-k-only-all-families-ported-on
+Qwen 122B	planar3_k	pp1/tg1	on	throughput_ported_on_final	ok	4.104948	4.255033						B	runs/20260410T143325Z_qwen122b-k-only-all-families-ported-on
+Qwen 122B	sq3_k	pp1/tg1	on	throughput_ported_on_final	ok	4.133980	4.252178						B	runs/20260410T143325Z_qwen122b-k-only-all-families-ported-on
+Qwen 122B	tq1_k	pp1/tg1	on	throughput_ported_on_final	ok	3.828910	4.166940						B	runs/20260410T143325Z_qwen122b-k-only-all-families-ported-on
+Qwen 122B	tq3_k	pp1/tg1	on	throughput_ported_on_final	ok	4.104632	4.153034						B	runs/20260410T143325Z_qwen122b-k-only-all-families-ported-on
+Gemma 4 31B	baseline	pp512/tg128	on	throughput_ported_on_final	ok	43.474325	1.107903						B	runs/20260410T143638Z_gemma4-31b-k-only-all-families-ported-on
+Gemma 4 31B	iso3_k	pp512/tg128	on	throughput_ported_on_final	ok	43.627869	1.102588						B	runs/20260410T143638Z_gemma4-31b-k-only-all-families-ported-on
+Gemma 4 31B	planar3_k	pp512/tg128	on	throughput_ported_on_final	ok	43.876578	1.101780						B	runs/20260410T143638Z_gemma4-31b-k-only-all-families-ported-on
+Gemma 4 31B	sq3_k	pp512/tg128	on	throughput_ported_on_final	ok	40.874276	1.104058						B	runs/20260410T143638Z_gemma4-31b-k-only-all-families-ported-on
+Gemma 4 31B	tq1_k	pp512/tg128	on	throughput_ported_on_final	ok	40.785997	1.109808						B	runs/20260410T143638Z_gemma4-31b-k-only-all-families-ported-on
+Gemma 4 31B	tq3_k	pp512/tg128	on	throughput_ported_on_final	ok	40.963774	1.108027						B	runs/20260410T143638Z_gemma4-31b-k-only-all-families-ported-on
+Nemotron 120B	baseline	pp1/tg1	on	throughput_ported_on_final	ok	3.126302	3.145767						B	runs/20260410T151139Z_nemotron120b-k-only-all-families-ported-on
+Nemotron 120B	iso3_k	pp1/tg1	on	throughput_ported_on_final	ok	3.035054	3.164730						B	runs/20260410T151139Z_nemotron120b-k-only-all-families-ported-on
+Nemotron 120B	planar3_k	pp1/tg1	on	throughput_ported_on_final	ok	3.068116	3.159981						B	runs/20260410T151139Z_nemotron120b-k-only-all-families-ported-on
+Nemotron 120B	sq3_k	pp1/tg1	on	throughput_ported_on_final	ok	3.182475	3.132739						B	runs/20260410T151139Z_nemotron120b-k-only-all-families-ported-on
+Nemotron 120B	tq1_k	pp1/tg1	on	throughput_ported_on_final	ok	3.156421	3.157133						B	runs/20260410T151139Z_nemotron120b-k-only-all-families-ported-on
+Nemotron 120B	tq3_k	pp1/tg1	on	throughput_ported_on_final	ok	3.142561	3.131303						B	runs/20260410T151139Z_nemotron120b-k-only-all-families-ported-on
+Mistral 119B	baseline	pp1/tg1	on	throughput_ported_on_final	ok	6.777589	7.159859						B	runs/20260410T152555Z_mistral119b-k-only-all-families-ported-on
+Mistral 119B	iso3_k	pp1/tg1	on	throughput_ported_on_final	ok	6.822060	7.480265						B	runs/20260410T152555Z_mistral119b-k-only-all-families-ported-on
+Mistral 119B	planar3_k	pp1/tg1	on	throughput_ported_on_final	ok	7.262309	7.407727						B	runs/20260410T152555Z_mistral119b-k-only-all-families-ported-on
+Mistral 119B	sq3_k	pp1/tg1	on	throughput_ported_on_final	ok	9.538427	8.733970						B	runs/20260410T152555Z_mistral119b-k-only-all-families-ported-on
+Mistral 119B	tq1_k	pp1/tg1	on	throughput_ported_on_final	ok	8.612792	9.660107						B	runs/20260410T152555Z_mistral119b-k-only-all-families-ported-on
+Mistral 119B	tq3_k	pp1/tg1	on	throughput_ported_on_final	ok	9.389392	9.729405						B	runs/20260410T152555Z_mistral119b-k-only-all-families-ported-on
+Qwen 9B	baseline	512	on	core_matrix_v1_ctx512	ok			4.0681	6566	5580	mixed_summary_report.txt	1	B	runs/20260410T154106Z_qwen9b-ppl-vram-ported-on
+Qwen 9B	tq1_k	512	on	core_matrix_v1_ctx512	ok			4.0536	6592	5606	mixed_summary_report.txt	1	B	runs/20260410T154106Z_qwen9b-ppl-vram-ported-on
+Qwen 9B	tq3_k	512	on	core_matrix_v1_ctx512	ok			4.0754	6590	5604	mixed_summary_report.txt	1	B	runs/20260410T154106Z_qwen9b-ppl-vram-ported-on
+Qwen 9B	sq3_k	512	on	core_matrix_v1_ctx512	ok			4.0754	6590	5604	mixed_summary_report.txt	1	B	runs/20260410T154106Z_qwen9b-ppl-vram-ported-on
+Qwen 9B	planar3_k	512	on	core_matrix_v1_ctx512	ok			4.0627	6570	5584	mixed_summary_report.txt	1	B	runs/20260410T154106Z_qwen9b-ppl-vram-ported-on
+Qwen 9B	iso3_k	512	on	core_matrix_v1_ctx512	ok			4.0627	6590	5604	mixed_summary_report.txt	1	B	runs/20260410T154106Z_qwen9b-ppl-vram-ported-on
+Qwen 27B	baseline	512	on	core_matrix_v1_ctx512	ok			3.5447	11432	10446	mixed_summary_report.txt	1	B	runs/20260410T154246Z_qwen27b-ppl-vram-ported-on
+Qwen 27B	tq1_k	512	on	core_matrix_v1_ctx512	ok			3.5412	11450	10454	mixed_summary_report.txt	1	B	runs/20260410T154246Z_qwen27b-ppl-vram-ported-on
+Qwen 27B	tq3_k	512	on	core_matrix_v1_ctx512	ok			3.5513	11448	10462	mixed_summary_report.txt	1	B	runs/20260410T154246Z_qwen27b-ppl-vram-ported-on
+Qwen 27B	sq3_k	512	on	core_matrix_v1_ctx512	ok			3.5513	11448	10462	mixed_summary_report.txt	1	B	runs/20260410T154246Z_qwen27b-ppl-vram-ported-on
+Qwen 27B	planar3_k	512	on	core_matrix_v1_ctx512	ok			3.5461	11444	10458	mixed_summary_report.txt	1	B	runs/20260410T154246Z_qwen27b-ppl-vram-ported-on
+Qwen 27B	iso3_k	512	on	core_matrix_v1_ctx512	ok			3.5461	11444	10458	mixed_summary_report.txt	1	B	runs/20260410T154246Z_qwen27b-ppl-vram-ported-on
+Qwen 122B	baseline	512	on	core_matrix_v1_ctx512	ok			3.7456	10580	9594	mixed_summary_report.txt	1	B	runs/20260410T154840Z_qwen122b-ppl-vram-ported-on
+Qwen 122B	tq1_k	512	on	core_matrix_v1_ctx512	ok			3.7452	10582	9575	mixed_summary_report.txt	1	B	runs/20260410T154840Z_qwen122b-ppl-vram-ported-on
+Qwen 122B	tq3_k	512	on	core_matrix_v1_ctx512	ok			3.7466	10580	9594	mixed_summary_report.txt	1	B	runs/20260410T154840Z_qwen122b-ppl-vram-ported-on
+Qwen 122B	sq3_k	512	on	core_matrix_v1_ctx512	ok			3.7466	10580	9573	mixed_summary_report.txt	1	B	runs/20260410T154840Z_qwen122b-ppl-vram-ported-on
+Qwen 122B	planar3_k	512	on	core_matrix_v1_ctx512	missing						mixed_summary_report.txt	1	F	runs/20260410T154840Z_qwen122b-ppl-vram-ported-on
+Qwen 122B	iso3_k	512	on	core_matrix_v1_ctx512	ok			3.7543	10568	9582	mixed_summary_report.txt	1	B	runs/20260410T154840Z_qwen122b-ppl-vram-ported-on
+Gemma 4 31B	baseline	512	on	core_matrix_v1_ctx512	ok			119.9030	7820	6834	mixed_summary_report.txt	1	B	runs/20260410T170021Z_gemma4-31b-ppl-vram-ported-on-gapfill
+Gemma 4 31B	tq1_k	512	on	core_matrix_v1_ctx512	ok			121.6342	7854	6868	mixed_summary_report.txt	1	B	runs/20260410T170021Z_gemma4-31b-ppl-vram-ported-on-gapfill
+Gemma 4 31B	tq3_k	512	on	core_matrix_v1_ctx512	ok			124.4262	7854	6868	mixed_summary_report.txt	1	B	runs/20260410T170021Z_gemma4-31b-ppl-vram-ported-on-gapfill
+Gemma 4 31B	sq3_k	512	on	core_matrix_v1_ctx512	ok			124.4262	7874	6888	mixed_summary_report.txt	1	B	runs/20260410T170021Z_gemma4-31b-ppl-vram-ported-on-gapfill
+Gemma 4 31B	planar3_k	512	on	core_matrix_v1_ctx512	ok			119.9030	7842	6856	mixed_summary_report.txt	1	B	runs/20260410T170021Z_gemma4-31b-ppl-vram-ported-on-gapfill
+Gemma 4 31B	iso3_k	512	on	core_matrix_v1_ctx512	ok			119.9030	7842	6856	mixed_summary_report.txt	1	B	runs/20260410T170021Z_gemma4-31b-ppl-vram-ported-on-gapfill
+Nemotron 120B	baseline	512	on	core_matrix_v1_ctx512	ok			4.0351	9430	8444	mixed_summary_report.txt	1	B	runs/20260410T171135Z_nemotron120b-ppl-vram-ported-on-gapfill
+Nemotron 120B	tq1_k	512	on	core_matrix_v1_ctx512	ok			4.0457	9432	8446	mixed_summary_report.txt	1	B	runs/20260410T171135Z_nemotron120b-ppl-vram-ported-on-gapfill
+Nemotron 120B	tq3_k	512	on	core_matrix_v1_ctx512	ok			4.0479	9432	8446	mixed_summary_report.txt	1	B	runs/20260410T171135Z_nemotron120b-ppl-vram-ported-on-gapfill
+Nemotron 120B	sq3_k	512	on	core_matrix_v1_ctx512	ok			4.0479	9432	8446	mixed_summary_report.txt	1	B	runs/20260410T171135Z_nemotron120b-ppl-vram-ported-on-gapfill
+Nemotron 120B	planar3_k	512	on	core_matrix_v1_ctx512	ok			4.0351	9430	8442	mixed_summary_report.txt	1	B	runs/20260410T171135Z_nemotron120b-ppl-vram-ported-on-gapfill
+Nemotron 120B	iso3_k	512	on	core_matrix_v1_ctx512	ok			4.0351	9430	8442	mixed_summary_report.txt	1	B	runs/20260410T171135Z_nemotron120b-ppl-vram-ported-on-gapfill
+Mistral 119B	baseline	512	on	core_matrix_v1_ctx512	failed				7215	6299	mixed_summary_report.txt	1	F	runs/20260411T014602Z_mistral119b-baseline-ctx512
+Mistral 119B	tq1_k	512	on	core_matrix_v1_ctx512	ok			32122.2728	7343	6427	mixed_summary_report.txt	1	B	runs/20260411T015013Z_mistral119b-tq1_k-ctx512
+Mistral 119B	tq3_k	512	on	core_matrix_v1_ctx512	ok			47109.3475	7343	6427	mixed_summary_report.txt	1	B	runs/20260411T015417Z_mistral119b-tq3_k-ctx512
+Mistral 119B	sq3_k	512	on	core_matrix_v1_ctx512	ok			47109.3475	7343	6427	mixed_summary_report.txt	1	B	runs/20260411T015825Z_mistral119b-sq3_k-ctx512
+Mistral 119B	planar3_k	512	on	core_matrix_v1_ctx512	failed				6087	5171	mixed_summary_report.txt	1	F	runs/20260411T020234Z_mistral119b-planar3_k-ctx512
+Mistral 119B	iso3_k	512	on	core_matrix_v1_ctx512	failed				6087	5171	mixed_summary_report.txt	1	F	runs/20260411T020530Z_mistral119b-iso3_k-ctx512
+Qwen 9B	baseline	2048	on	core_matrix_v1_ctx2048	ok			4.2369	6235	5365	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T210817Z_qwen9b-baseline-longctx-2048
+Qwen 9B	tq1_k	2048	on	core_matrix_v1_ctx2048	ok			4.2288	6241	5371	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T210844Z_qwen9b-tq1-longctx-2048
+Qwen 9B	tq3_k	2048	on	core_matrix_v1_ctx2048	ok			4.2670	6233	5363	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T210911Z_qwen9b-tq3-longctx-2048
+Qwen 9B	sq3_k	2048	on	core_matrix_v1_ctx2048	ok			4.2670	6233	5363	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T210938Z_qwen9b-sq3-longctx-2048
+Qwen 9B	planar3_k	2048	on	core_matrix_v1_ctx2048	ok			4.2249	6249	5379	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T211005Z_qwen9b-planar3-longctx-2048
+Qwen 9B	iso3_k	2048	on	core_matrix_v1_ctx2048	ok			4.2249	6249	5379	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T211033Z_qwen9b-iso3-longctx-2048
+Qwen 27B	baseline	2048	on	core_matrix_v1_ctx2048	failed			7.5664	6611	5741	20260410_long_context_corpus_repeat8.txt	8	F	runs/20260410T211100Z_qwen27b-baseline-longctx-2048
+Qwen 27B	tq1_k	2048	on	core_matrix_v1_ctx2048	ok			4.0179	6625	5755	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T211524Z_qwen27b-tq1-longctx-2048
+Qwen 27B	tq3_k	2048	on	core_matrix_v1_ctx2048	ok			4.0190	6619	5749	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T211949Z_qwen27b-tq3-longctx-2048
+Qwen 27B	sq3_k	2048	on	core_matrix_v1_ctx2048	ok			4.0197	6956	6086	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T212414Z_qwen27b-sq3-longctx-2048
+Qwen 27B	planar3_k	2048	on	core_matrix_v1_ctx2048	ok			4.0129	6759	5889	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T212839Z_qwen27b-planar3-longctx-2048
+Qwen 27B	iso3_k	2048	on	core_matrix_v1_ctx2048	ok			4.0129	6759	5775	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T213327Z_qwen27b-iso3-longctx-2048
+Qwen 122B	tq1_k	2048	on	core_matrix_v1_ctx2048	ok			3.4615	8145	7161	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T213814Z_qwen122b-tq1-longctx-2048
+Qwen 122B	tq3_k	2048	on	core_matrix_v1_ctx2048	ok			3.4592	8143	7159	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T214900Z_qwen122b-tq3-longctx-2048
+Qwen 122B	sq3_k	2048	on	core_matrix_v1_ctx2048	ok			3.4592	8143	7159	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T215945Z_qwen122b-sq3-longctx-2048
+Qwen 122B	iso3_k	2048	on	core_matrix_v1_ctx2048	ok			3.4578	8155	7171	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T221028Z_qwen122b-iso3-longctx-2048
+Gemma 4 31B	tq1_k	2048	on	core_matrix_v1_ctx2048	ok			97.3686	5551	4567	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T222111Z_gemma4-31b-tq1-longctx-2048
+Gemma 4 31B	tq3_k	2048	on	core_matrix_v1_ctx2048	ok			96.6882	5551	4567	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T223258Z_gemma4-31b-tq3-longctx-2048
+Gemma 4 31B	sq3_k	2048	on	core_matrix_v1_ctx2048	ok			97.0112	5551	4567	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T224446Z_gemma4-31b-sq3-longctx-2048
+Gemma 4 31B	planar3_k	2048	on	core_matrix_v1_ctx2048	ok			96.0670	5530	4546	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T225636Z_gemma4-31b-planar3-longctx-2048
+Gemma 4 31B	iso3_k	2048	on	core_matrix_v1_ctx2048	ok			96.0670	5532	4544	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T230757Z_gemma4-31b-iso3-longctx-2048
+Nemotron 120B	tq1_k	2048	on	core_matrix_v1_ctx2048	ok			3.8195	6749	5755	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T231902Z_nemotron120b-tq1-longctx-2048
+Nemotron 120B	tq3_k	2048	on	core_matrix_v1_ctx2048	ok			3.8561	6950	5956	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T233720Z_nemotron120b-tq3-longctx-2048
+Nemotron 120B	sq3_k	2048	on	core_matrix_v1_ctx2048	ok			3.8561	6793	5769	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260410T235517Z_nemotron120b-sq3-longctx-2048
+Nemotron 120B	planar3_k	2048	on	core_matrix_v1_ctx2048	ok			3.8238	6789	5746	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260411T001346Z_nemotron120b-planar3-longctx-2048
+Nemotron 120B	iso3_k	2048	on	core_matrix_v1_ctx2048	ok			3.8238	6789	5756	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260411T003040Z_nemotron120b-iso3-longctx-2048
+Mistral 119B	tq1_k	2048	on	core_matrix_v1_ctx2048	ok			93376.2709	7753	6720	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260411T004743Z_mistral119b-tq1-longctx-2048
+Mistral 119B	tq3_k	2048	on	core_matrix_v1_ctx2048	ok			108913.4375	7615	6699	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260411T010111Z_mistral119b-tq3-longctx-2048
+Mistral 119B	sq3_k	2048	on	core_matrix_v1_ctx2048	ok			105048.8896	7615	6699	20260410_long_context_corpus_repeat8.txt	8	B	runs/20260411T011443Z_mistral119b-sq3-longctx-2048
+Mistral 119B	planar3_k	2048	on	core_matrix_v1_ctx2048	failed				6087	5171	20260410_long_context_corpus_repeat8.txt	8	F	runs/20260411T012813Z_mistral119b-planar3-longctx-2048
+Mistral 119B	iso3_k	2048	on	core_matrix_v1_ctx2048	failed				6087	5171	20260410_long_context_corpus_repeat8.txt	8	F	runs/20260411T013110Z_mistral119b-iso3-longctx-2048
+Qwen 122B	baseline	2048	on	core_matrix_v1_ctx2048	failed			3.3143	8007	7137	20260410_long_context_corpus_repeat8.txt	8	F	runs/20260410T202629Z_qwen122b-baseline-longctx-2048
+Gemma 4 31B	baseline	2048	on	core_matrix_v1_ctx2048	failed			94.9096	5385	4515	20260410_long_context_corpus_repeat8.txt	8	F	runs/20260410T203108Z_gemma4-31b-baseline-longctx-2048
+Nemotron 120B	baseline	2048	on	core_matrix_v1_ctx2048	failed			3.2360	6607	5737	20260410_long_context_corpus_repeat8.txt	8	F	runs/20260410T204151Z_nemotron120b-baseline-longctx-2048
+Mistral 119B	baseline	2048	on	core_matrix_v1_ctx2048	failed				7979	7109	20260410_long_context_corpus_repeat8.txt	8	F	runs/20260410T205118Z_mistral119b-baseline-longctx-2048
+Qwen 9B	baseline	8192	on	large_context_stress	ok			1.0940	6473	5557	20260411_long_context_corpus_repeat40.txt	40	C	runs/20260411T021232Z_qwen9b-baseline-ctx8192
+Qwen 27B	baseline	8192	on	large_context_stress	failed			10.9697	6777	5861	20260411_long_context_corpus_repeat40.txt	40	F	runs/20260411T021350Z_qwen27b-baseline-ctx8192
+Gemma 4 31B	baseline	8192	on	large_context_stress	failed			3.7580	5489	4573	20260411_long_context_corpus_repeat40.txt	40	F	runs/20260411T023310Z_gemma4-31b-baseline-ctx8192
+Qwen 9B	baseline	16384	on	large_context_stress	ok			1.0491	6725	5809	20260411_long_context_corpus_repeat40.txt	40	C	runs/20260411T032011Z_qwen9b-baseline-ctx16384
+Qwen 27B	baseline	16384	on	large_context_stress	failed			53.0621	6937	6021	20260411_long_context_corpus_repeat40.txt	40	F	runs/20260411T032127Z_qwen27b-baseline-ctx16384
+Gemma 4 31B	baseline	16384	on	large_context_stress	failed			1.9854	5627	4711	20260411_long_context_corpus_repeat40.txt	40	F	runs/20260411T034014Z_gemma4-31b-baseline-ctx16384
+Qwen 9B	baseline	40960	on	large_context_stress	ok			1.0086	7493	6577	20260411_long_context_corpus_repeat40.txt	40	C	runs/20260411T042559Z_qwen9b-baseline-ctx40960
+Qwen 27B	baseline	40960	on	large_context_stress	failed			3.9236	7469	6553	20260411_long_context_corpus_repeat40.txt	40	F	runs/20260411T042719Z_qwen27b-baseline-ctx40960
+Gemma 4 31B	baseline	40960	on	large_context_stress	failed			1.1745	5929	5013	20260411_long_context_corpus_repeat40.txt	40	F	runs/20260411T044625Z_gemma4-31b-baseline-ctx40960
+Qwen 9B	tq1_k	40960	on	large_context_stress	ok			1.0080	8059	7143	20260411_long_context_corpus_repeat40.txt	40	C	runs/20260411T053138Z_qwen9b-tq1_k-ctx40960
+Qwen 27B	tq1_k	40960	on	large_context_stress	ok			1.7498	8081	7165	20260411_long_context_corpus_repeat40.txt	40	C	runs/20260411T053310Z_qwen27b-tq1_k-ctx40960
+Gemma 4 31B	tq1_k	40960	on	large_context_stress	ok			1.4151	7247	6331	20260411_long_context_corpus_repeat40.txt	40	C	runs/20260411T055211Z_gemma4-31b-tq1_k-ctx40960
+Qwen 27B	baseline	2048	on	qwen27b_nonrepeated_anomaly_pack	failed				6856	5768	wikitext-2-test	1	F	runs/20260411T085918Z_qwen27b-baseline-nonrepeated-ctx2048
+Qwen 27B	tq1_k	2048	on	qwen27b_nonrepeated_anomaly_pack	ok			6.6734	6680	5755	wikitext-2-test	1	C	runs/20260411T093946Z_qwen27b-tq1_k-nonrepeated-ctx2048
+Qwen 27B	baseline	8192	on	qwen27b_nonrepeated_anomaly_pack	failed				6780	5855	wikitext-2-test	1	F	runs/20260411T101930Z_qwen27b-baseline-nonrepeated-ctx8192
+Qwen 27B	tq1_k	8192	on	qwen27b_nonrepeated_anomaly_pack	ok			6.9558	6780	5855	wikitext-2-test	1	C	runs/20260411T113326Z_qwen27b-tq1_k-nonrepeated-ctx8192
+Qwen 27B	baseline	16384	on	qwen27b_nonrepeated_anomaly_pack	failed				6940	6015	wikitext-2-test	1	F	runs/20260411T124732Z_qwen27b-baseline-nonrepeated-ctx16384
+Qwen 27B	tq1_k	16384	on	qwen27b_nonrepeated_anomaly_pack	ok			6.4163	6980	6055	wikitext-2-test	1	C	runs/20260411T140331Z_qwen27b-tq1_k-nonrepeated-ctx16384

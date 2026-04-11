@@ -33,6 +33,10 @@ The strongest takeaways from the last 48 hours are:
    - patched `ngl=20`, where TurboQuant plus late-range host fallback makes the run possible, but SpectralQuant is near-parity rather than a raw throughput win
 5. RTX 4070 DVFS matters, but modestly. `160 W` is the best practical default, `140 W` is the best pure efficiency point, and neither changes the system story as much as runtime choice does.
 
+## Audited Export Bundle
+
+For the cleaner April 10 to April 11 publication package, including the audited core matrix, large-context stress note, anomaly pack, blocker note, and machine-readable master table, see `audited_export_bundle_2026-04-11/`.
+
 ## Code Provenance, Forks, and Credits
 
 This repository is a benchmark publication repo, not the main development repo.
